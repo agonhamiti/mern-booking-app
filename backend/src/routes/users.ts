@@ -21,7 +21,7 @@ router.post(
       if (!errors.isEmpty()) {
         return res.status(400).json({ message: errors.array() });
       }
-      
+
         try {
             let user = await User.findOne({
               email: req.body.email,
@@ -52,6 +52,17 @@ router.post(
         console.log(error);
         res.status(500).send({ message: "Something went wrong" });
       }
+});
+
+router.get("/data", async (req: Request, res: Response) => {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    const data = await response.json();
+    res.json(data);
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
   

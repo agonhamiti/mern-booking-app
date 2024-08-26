@@ -5,19 +5,28 @@ import mongoose from "mongoose";
 import userRoutes from "./routes/users";
 import authRoutes from "./routes/auth";
 import fetch from "node-fetch";
-
+import cookieParser from "cookie-parser";
 
 
 mongoose.connect(process.env.MONGODB_CONNECTION_STRING as string);
 
 
 const app = express();
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
   origin: "http://localhost:5173", // Your frontend's origin
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 }));
+ 
+//******kjo spo bon
+//app.use(
+//  cors({
+//    origin: process.env.FRONTEND_URL 
+//    credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+//  })
+//);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

@@ -9,6 +9,9 @@ import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
 import { useAppContext } from "./contexts/AppContext";
 import AddHotel from "./pages/AddHotel";
+import MyHotels from "./pages/MyHotels";
+import EditHotel from "./pages/EditHotel";
+import Search from "./pages/Search";
 
 
 
@@ -29,7 +32,7 @@ const App = () => {
           path="/search"
           element={
           <Layout>
-            <p>Search Page</p>
+            <Search />
           </Layout>
           }
         />
@@ -59,9 +62,25 @@ const App = () => {
                 </Layout>
               }
             />
-           
+           <Route
+              path="/my-hotels"
+              element={
+                <Layout>
+                  <MyHotels />
+                </Layout>
+              }
+            />
+            <Route
+              path="/edit-hotel/:hotelId"
+              element={
+                <Layout>
+                  <EditHotel />
+                </Layout>
+              }
+            />
            </>
           )}
+          
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>

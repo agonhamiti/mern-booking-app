@@ -1,36 +1,5 @@
 import mongoose from "mongoose";
-
-export type HotelType = {
-    _id: string;
-    userId: string;
-    name: string;
-    city: string;
-    country: string;
-    description: string;
-    type: string;
-    adultCount: number;
-    childCount: number;
-    facilities: string[];
-    pricePerNight: number;
-    starRating: number;
-    imageUrls: string[];
-    lastUpdated: Date;
-    bookings: BookingType[];  // Added this line
-  };
-
-  
-  export type BookingType = {
-    _id: string;        // Assuming the booking will have an identifier
-    firstName: string;
-    lastName: string;
-    email: string;
-    adultCount: number;
-    childCount: number;
-    checkIn: Date;
-    checkOut: Date;
-    userId: string;
-    totalCost: number;
-  };
+import { BookingType, HotelType } from "../shared/types";
 
 
 const bookingSchema = new mongoose.Schema<BookingType>({

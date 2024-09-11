@@ -7,15 +7,15 @@ import {
 import Layout from "./layouts/Layout";
 import Register from "./pages/Register";
 import SignIn from "./pages/SignIn";
-import { useAppContext } from "./contexts/AppContext";
 import AddHotel from "./pages/AddHotel";
+import { useAppContext } from "./contexts/AppContext";
 import MyHotels from "./pages/MyHotels";
 import EditHotel from "./pages/EditHotel";
 import Search from "./pages/Search";
 import Detail from "./pages/Detail";
 import Booking from "./pages/Booking";
-
-
+import MyBookings from "./pages/MyBookings";
+import Home from "./pages/Home";
 
 const App = () => {
   const { isLoggedIn } = useAppContext();
@@ -26,16 +26,16 @@ const App = () => {
           path="/"
           element={
             <Layout>
-              <p>Home Page</p>
+              <Home />
             </Layout>
           }
         />
-         <Route
+        <Route
           path="/search"
           element={
-          <Layout>
-            <Search />
-          </Layout>
+            <Layout>
+              <Search />
+            </Layout>
           }
         />
         <Route
@@ -54,7 +54,7 @@ const App = () => {
             </Layout>
           }
         />
-         <Route
+        <Route
           path="/sign-in"
           element={
             <Layout>
@@ -62,9 +62,10 @@ const App = () => {
             </Layout>
           }
         />
+
         {isLoggedIn && (
           <>
-           <Route
+            <Route
               path="/hotel/:hotelId/booking"
               element={
                 <Layout>
@@ -72,19 +73,12 @@ const App = () => {
                 </Layout>
               }
             />
+
             <Route
               path="/add-hotel"
               element={
                 <Layout>
                   <AddHotel />
-                </Layout>
-              }
-            />
-           <Route
-              path="/my-hotels"
-              element={
-                <Layout>
-                  <MyHotels />
                 </Layout>
               }
             />
@@ -96,13 +90,27 @@ const App = () => {
                 </Layout>
               }
             />
-           </>
-          )}
-          
+            <Route
+              path="/my-hotels"
+              element={
+                <Layout>
+                  <MyHotels />
+                </Layout>
+              }
+            />
+            <Route
+              path="/my-bookings"
+              element={
+                <Layout>
+                  <MyBookings />
+                </Layout>
+              }
+            />
+          </>
+        )}
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </Router>
-    
   );
 };
 
